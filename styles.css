@@ -443,7 +443,6 @@ body {
     }
 
     .navbar-container {
-        flex-direction: column;
         gap: 1rem;
     }
 
