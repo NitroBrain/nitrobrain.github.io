@@ -97,9 +97,10 @@ async function loadFeaturedProjects() {
       .map(
         (repo) => `
       <div class="card">
-        <span class="card-icon">${getProjectEmoji(repo)}</span>
+      <div class="info">
         <h3>${repo.name}</h3>
         <p class="card-description">${repo.description || "No description"}</p>
+      </div>
         <a href="${
           repo.html_url
         }" target="_blank" rel="noopener noreferrer" class="card-link">
