@@ -43,7 +43,7 @@ async function loadFeaturedProjects() {
 
   try {
     const res = await fetch(
-      "https://api.github.com/orgs/webbro-software/repos?per_page=100&type=public&sort=updated"
+      "https://api.github.com/orgs/NitroBrain/repos?per_page=100&type=public&sort=updated"
     );
     let repos = await res.json();
 
