@@ -88,7 +88,7 @@ function getProjectEmoji(repo) {
       <a href="#" class="text-2xl sm:text-3xl font-extrabold text-red-500 uppercase tracking-wider hover:animate-glitch hover:shadow-[0_0_10px_rgba(252,72,80,1)] transition-all duration-300">
         NitroBrain
       </a>
-      <a href="https://github.com/NitroBrain" target="_blank" rel="noopener noreferrer" class="border-2 border-red-500 text-red-500 px-4 py-2 uppercase font-bold tracking-wide hover:bg-red-500 hover:text-white hover:shadow-[0_0_20px_rgba(252,72,80,1)] transition-all duration-300 flex items-center gap-2">
+      <a href="https://github.com/NitroBrain" target="_blank" rel="noopener noreferrer" class="rounded-xl border-2 border-red-500 text-red-500 px-4 py-2 uppercase font-bold tracking-wide hover:bg-red-500 hover:text-white hover:shadow-[0_0_20px_rgba(252,72,80,1)] transition-all duration-300 flex items-center gap-2">
         <span>GitHub</span>
       </a>
     </div>
@@ -126,13 +126,13 @@ function getProjectEmoji(repo) {
           <p class="text-gray-600 text-center col-span-full font-mono">Unable to fetch projects from GitHub. Check out our featured projects below!</p>
         ) : (
           repos.map((repo) => (
-            <div class="bg-white/95 backdrop-blur-sm border-2 border-gray-200 p-6 hover:border-red-500 hover:-translate-y-1 hover:shadow-[0_10px_30px_rgba(252,72,80,0.3)] transition-all duration-300 flex flex-col justify-between relative group">
+            <div class="bg-white/95 backdrop-blur-sm rounded-xl border-2 border-gray-200 p-6 hover:border-red-500 hover:-translate-y-1 hover:shadow-[0_10px_30px_rgba(252,72,80,0.3)] transition-all duration-300 flex flex-col justify-between relative group">
               <div class="absolute top-0 left-0 right-0 h-1 bg-red-500 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></div>
               <div>
                 <h3 class="text-xl font-bold text-gray-800 uppercase tracking-wide mb-4">{repo.name}</h3>
                 <p class="text-gray-600 font-mono mb-6">{repo.description || 'No description'}</p>
               </div>
-              <a href={repo.html_url} target="_blank" rel="noopener noreferrer" class="border-2 border-red-500 text-red-500 px-4 py-2 uppercase font-bold tracking-wide hover:bg-red-500 hover:text-white transition-all duration-300 flex items-center gap-2 relative overflow-hidden group/link">
+              <a href={repo.html_url} target="_blank" rel="noopener noreferrer" class="rounded-xl border-2 border-red-500 text-red-500 px-4 py-2 uppercase font-bold tracking-wide hover:bg-red-500 hover:text-white transition-all duration-300 flex items-center gap-2 relative overflow-hidden group/link">
                 <span class="absolute top-0 left-[-100%] w-full h-full bg-red-500 transition-all duration-300 group-hover/link:left-0 z-[-1]"></span>
                 <span>{getProjectEmoji(repo)} View Project</span>
                 <span class="font-mono font-bold">&gt;&gt;</span>
@@ -151,37 +151,37 @@ function getProjectEmoji(repo) {
         <span class="absolute bottom-[-10px] left-0 w-24 h-1 bg-red-500"></span>
       </h2>
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        <div class="bg-white/95 backdrop-blur-sm border-2 border-gray-200 p-6 hover:border-red-500 hover:-translate-y-1 hover:shadow-[0_10px_30px_rgba(252,72,80,0.3)] transition-all duration-300 flex flex-col justify-between relative group">
+        <div class="bg-white/95 backdrop-blur-sm rounded-xl border-2 border-gray-200 p-6 hover:border-red-500 hover:-translate-y-1 hover:shadow-[0_10px_30px_rgba(252,72,80,0.3)] transition-all duration-300 flex flex-col justify-between relative group">
           <div class="absolute top-0 left-0 right-0 h-1 bg-red-500 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></div>
           <div>
             <h3 class="text-xl font-bold text-gray-800 uppercase tracking-wide mb-4">styled_print</h3>
             <p class="text-gray-600 font-mono mb-6">Terminal text styling for Python</p>
           </div>
-          <a href="https://github.com/webbro-software/styled_print" target="_blank" rel="noopener noreferrer" class="border-2 border-red-500 text-red-500 px-4 py-2 uppercase font-bold tracking-wide hover:bg-red-500 hover:text-white transition-all duration-300 flex items-center gap-2 relative overflow-hidden group/link">
+          <a href="https://github.com/webbro-software/styled_print" target="_blank" rel="noopener noreferrer" class="rounded-xl border-2 border-red-500 text-red-500 px-4 py-2 uppercase font-bold tracking-wide hover:bg-red-500 hover:text-white transition-all duration-300 flex items-center gap-2 relative overflow-hidden group/link">
             <span class="absolute top-0 left-[-100%] w-full h-full bg-red-500 transition-all duration-300 group-hover/link:left-0 z-[-1]"></span>
             <span>View on GitHub</span>
             <span class="font-mono font-bold">&gt;&gt;</span>
           </a>
         </div>
-        <div class="bg-white/95 backdrop-blur-sm border-2 border-gray-200 p-6 hover:border-red-500 hover:-translate-y-1 hover:shadow-[0_10px_30px_rgba(252,72,80,0.3)] transition-all duration-300 flex flex-col justify-between relative group">
+        <div class="bg-white/95 backdrop-blur-sm rounded-xl border-2 border-gray-200 p-6 hover:border-red-500 hover:-translate-y-1 hover:shadow-[0_10px_30px_rgba(252,72,80,0.3)] transition-all duration-300 flex flex-col justify-between relative group">
           <div class="absolute top-0 left-0 right-0 h-1 bg-red-500 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></div>
           <div>
             <h3 class="text-xl font-bold text-gray-800 uppercase tracking-wide mb-4">styled-console</h3>
             <p class="text-gray-600 font-mono mb-6">Styled console logger for JavaScript</p>
           </div>
-          <a href="https://github.com/webbro-software/styled-console" target="_blank" rel="noopener noreferrer" class="border-2 border-red-500 text-red-500 px-4 py-2 uppercase font-bold tracking-wide hover:bg-red-500 hover:text-white transition-all duration-300 flex items-center gap-2 relative overflow-hidden group/link">
+          <a href="https://github.com/webbro-software/styled-console" target="_blank" rel="noopener noreferrer" class="rounded-xl border-2 border-red-500 text-red-500 px-4 py-2 uppercase font-bold tracking-wide hover:bg-red-500 hover:text-white transition-all duration-300 flex items-center gap-2 relative overflow-hidden group/link">
             <span class="absolute top-0 left-[-100%] w-full h-full bg-red-500 transition-all duration-300 group-hover/link:left-0 z-[-1]"></span>
             <span>View on GitHub</span>
             <span class="font-mono font-bold">&gt;&gt;</span>
           </a>
         </div>
-        <div class="bg-white/95 backdrop-blur-sm border-2 border-gray-200 p-6 hover:border-red-500 hover:-translate-y-1 hover:shadow-[0_10px_30px_rgba(252,72,80,0.3)] transition-all duration-300 flex flex-col justify-between relative group">
+        <div class="bg-white/95 backdrop-blur-sm rounded-xl border-2 border-gray-200 p-6 hover:border-red-500 hover:-translate-y-1 hover:shadow-[0_10px_30px_rgba(252,72,80,0.3)] transition-all duration-300 flex flex-col justify-between relative group">
           <div class="absolute top-0 left-0 right-0 h-1 bg-red-500 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></div>
           <div>
             <h3 class="text-xl font-bold text-gray-800 uppercase tracking-wide mb-4">gcd-calculator</h3>
             <p class="text-gray-600 font-mono mb-6">Simple GCD calculator in Python</p>
           </div>
-          <a href="https://github.com/webbro-software/gcd-calculator" target="_blank" rel="noopener noreferrer" class="border-2 border-red-500 text-red-500 px-4 py-2 uppercase font-bold tracking-wide hover:bg-red-500 hover:text-white transition-all duration-300 flex items-center gap-2 relative overflow-hidden group/link">
+          <a href="https://github.com/webbro-software/gcd-calculator" target="_blank" rel="noopener noreferrer" class="rounded-xl border-2 border-red-500 text-red-500 px-4 py-2 uppercase font-bold tracking-wide hover:bg-red-500 hover:text-white transition-all duration-300 flex items-center gap-2 relative overflow-hidden group/link">
             <span class="absolute top-0 left-[-100%] w-full h-full bg-red-500 transition-all duration-300 group-hover/link:left-0 z-[-1]"></span>
             <span>View on GitHub</span>
             <span class="font-mono font-bold">&gt;&gt;</span>
@@ -198,49 +198,49 @@ function getProjectEmoji(repo) {
         <span class="absolute bottom-[-10px] left-0 w-24 h-1 bg-red-500"></span>
       </h2>
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        <div class="bg-white/95 backdrop-blur-sm border-2 border-gray-200 p-6 hover:border-red-500 hover:-translate-y-1 hover:shadow-[0_10px_30px_rgba(252,72,80,0.3)] transition-all duration-300 flex flex-col justify-between relative group">
+        <div class="bg-white/95 backdrop-blur-sm rounded-xl border-2 border-gray-200 p-6 hover:border-red-500 hover:-translate-y-1 hover:shadow-[0_10px_30px_rgba(252,72,80,0.3)] transition-all duration-300 flex flex-col justify-between relative group">
           <div class="absolute top-0 left-0 right-0 h-1 bg-red-500 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></div>
           <div>
             <h3 class="text-xl font-bold text-gray-800 uppercase tracking-wide mb-4">nitrovim</h3>
             <p class="text-gray-600 font-mono mb-6">VIM setup in Lua for fast dev</p>
           </div>
-          <a href="https://github.com/webbro-software/nitrovim" target="_blank" rel="noopener noreferrer" class="border-2 border-red-500 text-red-500 px-4 py-2 uppercase font-bold tracking-wide hover:bg-red-500 hover:text-white transition-all duration-300 flex items-center gap-2 relative overflow-hidden group/link">
+          <a href="https://github.com/webbro-software/nitrovim" target="_blank" rel="noopener noreferrer" class="rounded-xl border-2 border-red-500 text-red-500 px-4 py-2 uppercase font-bold tracking-wide hover:bg-red-500 hover:text-white transition-all duration-300 flex items-center gap-2 relative overflow-hidden group/link">
             <span class="absolute top-0 left-[-100%] w-full h-full bg-red-500 transition-all duration-300 group-hover/link:left-0 z-[-1]"></span>
             <span>Explore</span>
             <span class="font-mono font-bold">&gt;&gt;</span>
           </a>
         </div>
-        <div class="bg-white/95 backdrop-blur-sm border-2 border-gray-200 p-6 hover:border-red-500 hover:-translate-y-1 hover:shadow-[0_10px_30px_rgba(252,72,80,0.3)] transition-all duration-300 flex flex-col justify-between relative group">
+        <div class="bg-white/95 backdrop-blur-sm rounded-xl border-2 border-gray-200 p-6 hover:border-red-500 hover:-translate-y-1 hover:shadow-[0_10px_30px_rgba(252,72,80,0.3)] transition-all duration-300 flex flex-col justify-between relative group">
           <div class="absolute top-0 left-0 right-0 h-1 bg-red-500 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></div>
           <div>
             <h3 class="text-xl font-bold text-gray-800 uppercase tracking-wide mb-4">simple-translate</h3>
             <p class="text-gray-600 font-mono mb-6">Multilingual translator for Python</p>
           </div>
-          <a href="https://github.com/webbro-software/simple-translate" target="_blank" rel="noopener noreferrer" class="border-2 border-red-500 text-red-500 px-4 py-2 uppercase font-bold tracking-wide hover:bg-red-500 hover:text-white transition-all duration-300 flex items-center gap-2 relative overflow-hidden group/link">
+          <a href="https://github.com/webbro-software/simple-translate" target="_blank" rel="noopener noreferrer" class="rounded-xl border-2 border-red-500 text-red-500 px-4 py-2 uppercase font-bold tracking-wide hover:bg-red-500 hover:text-white transition-all duration-300 flex items-center gap-2 relative overflow-hidden group/link">
             <span class="absolute top-0 left-[-100%] w-full h-full bg-red-500 transition-all duration-300 group-hover/link:left-0 z-[-1]"></span>
             <span>Explore</span>
             <span class="font-mono font-bold">&gt;&gt;</span>
           </a>
         </div>
-        <div class="bg-white/95 backdrop-blur-sm border-2 border-gray-200 p-6 hover:border-red-500 hover:-translate-y-1 hover:shadow-[0_10px_30px_rgba(252,72,80,0.3)] transition-all duration-300 flex flex-col justify-between relative group">
+        <div class="bg-white/95 backdrop-blur-sm rounded-xl border-2 border-gray-200 p-6 hover:border-red-500 hover:-translate-y-1 hover:shadow-[0_10px_30px_rgba(252,72,80,0.3)] transition-all duration-300 flex flex-col justify-between relative group">
           <div class="absolute top-0 left-0 right-0 h-1 bg-red-500 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></div>
           <div>
             <h3 class="text-xl font-bold text-gray-800 uppercase tracking-wide mb-4">voice-js</h3>
             <p class="text-gray-600 font-mono mb-6">Web Speech API abstraction</p>
           </div>
-          <a href="https://github.com/webbro-software/voice-js" target="_blank" rel="noopener noreferrer" class="border-2 border-red-500 text-red-500 px-4 py-2 uppercase font-bold tracking-wide hover:bg-red-500 hover:text-white transition-all duration-300 flex items-center gap-2 relative overflow-hidden group/link">
+          <a href="https://github.com/webbro-software/voice-js" target="_blank" rel="noopener noreferrer" class="rounded-xl border-2 border-red-500 text-red-500 px-4 py-2 uppercase font-bold tracking-wide hover:bg-red-500 hover:text-white transition-all duration-300 flex items-center gap-2 relative overflow-hidden group/link">
             <span class="absolute top-0 left-[-100%] w-full h full bg-red-500 transition-all duration-300 group-hover/link:left-0 z-[-1]"></span>
             <span>Explore</span>
             <span class="font-mono font-bold">&gt;&gt;</span>
           </a>
         </div>
-        <div class="bg-white/95 backdrop-blur-sm border-2 border-gray-200 p-6 hover:border-red-500 hover:-translate-y-1 hover:shadow-[0_10px_30px_rgba(252,72,80,0.3)] transition-all duration-300 flex flex-col justify-between relative group">
+        <div class="bg-white/95 backdrop-blur-sm border-2 rounded-xl border-gray-200 p-6 hover:border-red-500 hover:-translate-y-1 hover:shadow-[0_10px_30px_rgba(252,72,80,0.3)] transition-all duration-300 flex flex-col justify-between relative group">
           <div class="absolute top-0 left-0 right-0 h-1 bg-red-500 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></div>
           <div>
             <h3 class="text-xl font-bold text-gray-800 uppercase tracking-wide mb-4">pencil_art</h3>
             <p class="text-gray-600 font-mono mb-6">Convert images to sketch</p>
           </div>
-          <a href="https://github.com/webbro-software/pencil_art" target="_blank" rel="noopener noreferrer" class="border-2 border-red-500 text-red-500 px-4 py-2 uppercase font-bold tracking-wide hover:bg-red-500 hover:text-white transition-all duration-300 flex items-center gap-2 relative overflow-hidden group/link">
+          <a href="https://github.com/webbro-software/pencil_art" target="_blank" rel="noopener noreferrer" class="rounded-xl border-2 border-red-500 text-red-500 px-4 py-2 uppercase font-bold tracking-wide hover:bg-red-500 hover:text-white transition-all duration-300 flex items-center gap-2 relative overflow-hidden group/link">
             <span class="absolute top-0 left-[-100%] w-full h-full bg-red-500 transition-all duration-300 group-hover/link:left-0 z-[-1]"></span>
             <span>Explore</span>
             <span class="font-mono font-bold">&gt;&gt;</span>
@@ -256,10 +256,10 @@ function getProjectEmoji(repo) {
         VS Code Extensions
         <span class="absolute bottom-[-10px] left-0 w-24 h-1 bg-red-500"></span>
       </h2>
-      <div class="max-w-2xl mx-auto bg-white/95 backdrop-blur-sm border-2 border-red-500 p-6 animate-neon-pulse text-center">
+      <div class="max-w-2xl mx-auto bg-white/95 backdrop-blur-sm rounded-xl border-2 border-red-500 p-6 animate-neon-pulse text-center">
         <h3 class="text-xl font-bold text-gray-800 uppercase tracking-wide mb-4">uzcss-syntax</h3>
         <p class="text-gray-600 font-mono mb-6">Syntax highlighting for uzcss - bringing Uzbek CSS to VS Code</p>
-        <a href="https://github.com/webbro-software/uzcss-syntax" target="_blank" rel="noopener noreferrer" class="border-2 border-red-500 text-red-500 px-4 py-2 uppercase font-bold tracking-wide hover:bg-red-500 hover:text-white transition-all duration-300 flex items-center gap-2 relative overflow-hidden group/link mx-auto w-fit">
+        <a href="https://github.com/webbro-software/uzcss-syntax" target="_blank" rel="noopener noreferrer" class="rounded-xl border-2 border-red-500 text-red-500 px-4 py-2 uppercase font-bold tracking-wide hover:bg-red-500 hover:text-white transition-all duration-300 flex items-center gap-2 relative overflow-hidden group/link mx-auto w-fit">
           <span class="absolute top-0 left-[-100%] w-full h-full bg-red-500 transition-all duration-300 group-hover/link:left-0 z-[-1]"></span>
           <span>View Extension</span>
           <span class="font-mono font-bold">&gt;&gt;</span>
@@ -278,20 +278,20 @@ function getProjectEmoji(repo) {
         We build for the soul of development
       </p>
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
-        <div class="bg-white/95 backdrop-blur-sm border-2 border-gray-200 p-6 text-center hover:border-red-500 hover:scale-105 hover:shadow-[0_0_30px_rgba(252,72,80,0.5)] transition-all duration-300">
-          <span class="text-5xl mb-4 block filter grayscale group-hover:filter-none transition-all duration-300">📚</span>
+        <div class="bg-white/95 backdrop-blur-sm rounded-xl border-2 border-gray-200 p-6 text-center hover:border-red-500 hover:scale-105 hover:shadow-[0_0_30px_rgba(252,72,80,0.5)] transition-all duration-300">
+          <span class="text-5xl mb-4 block filter grayscale hover:filter-none transition-all duration-300">📚</span>
           <p class="text-lg font-bold text-gray-800 uppercase tracking-wide">Learning</p>
         </div>
-        <div class="bg-white/95 backdrop-blur-sm border-2 border-gray-200 p-6 text-center hover:border-red-500 hover:scale-105 hover:shadow-[0_0_30px_rgba(252,72,80,0.5)] transition-all duration-300">
-          <span class="text-5xl mb-4 block filter grayscale group-hover:filter-none transition-all duration-300">💡</span>
+        <div class="bg-white/95 backdrop-blur-sm rounded-xl border-2 border-gray-200 p-6 text-center hover:border-red-500 hover:scale-105 hover:shadow-[0_0_30px_rgba(252,72,80,0.5)] transition-all duration-300">
+          <span class="text-5xl mb-4 block filter grayscale hover:filter-none transition-all duration-300">💡</span>
           <p class="text-lg font-bold text-gray-800 uppercase tracking-wide">Innovation</p>
         </div>
-        <div class="bg-white/95 backdrop-blur-sm border-2 border-gray-200 p-6 text-center hover:border-red-500 hover:scale-105 hover:shadow-[0_0_30px_rgba(252,72,80,0.5)] transition-all duration-300">
-          <span class="text-5xl mb-4 block filter grayscale group-hover:filter-none transition-all duration-300">💻</span>
+        <div class="bg-white/95 backdrop-blur-sm rounded-xl border-2 border-gray-200 p-6 text-center hover:border-red-500 hover:scale-105 hover:shadow-[0_0_30px_rgba(252,72,80,0.5)] transition-all duration-300">
+          <span class="text-5xl mb-4 block filter grayscale hover:filter-none transition-all duration-300">💻</span>
           <p class="text-lg font-bold text-gray-800 uppercase tracking-wide">Developers</p>
         </div>
-        <div class="bg-white/95 backdrop-blur-sm border-2 border-gray-200 p-6 text-center hover:border-red-500 hover:scale-105 hover:shadow-[0_0_30px_rgba(252,72,80,0.5)] transition-all duration-300">
-          <span class="text-5xl mb-4 block filter grayscale group-hover:filter-none transition-all duration-300">🎮</span>
+        <div class="bg-white/95 backdrop-blur-sm rounded-xl border-2 border-gray-200 p-6 text-center hover:border-red-500 hover:scale-105 hover:shadow-[0_0_30px_rgba(252,72,80,0.5)] transition-all duration-300">
+          <span class="text-5xl mb-4 block filter grayscale hover:filter-none transition-all duration-300">🎮</span>
           <p class="text-lg font-bold text-gray-800 uppercase tracking-wide">Fun</p>
         </div>
       </div>
@@ -303,7 +303,7 @@ function getProjectEmoji(repo) {
 
   <footer class="bg-white border-t-4 border-red-500 py-16 px-4 sm:px-6 lg:px-8 text-center">
     <h3 class="text-2xl sm:text-3xl font-extrabold text-red-500 uppercase tracking-wider mb-8">Connect with NitroBrain</h3>
-    <a href="https://github.com/NitroBrain" target="_blank" rel="noopener noreferrer" class="border-2 border-red-500 text-red-500 px-6 py-3 uppercase font-bold tracking-wide hover:bg-red-500 hover:text-white hover:shadow-[0_0_30px_rgba(252,72,80,1)] transition-all duration-300 inline-flex items-center gap-4 relative overflow-hidden group">
+    <a href="https://github.com/NitroBrain" target="_blank" rel="noopener noreferrer" class="rounded-xl border-2 border-red-500 text-red-500 px-6 py-3 uppercase font-bold tracking-wide hover:bg-red-500 hover:text-white hover:shadow-[0_0_30px_rgba(252,72,80,1)] transition-all duration-300 inline-flex items-center gap-4 relative overflow-hidden group">
       <span class="absolute top-0 left-[-100%] w-full h-full bg-red-500 transition-all duration-300 group-hover:left-0 z-[-1]"></span>
       <span>github.com/NitroBrain</span>
     </a>
