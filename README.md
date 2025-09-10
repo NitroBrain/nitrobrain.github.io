@@ -1,1 +1,1 @@
-# Nitro Brain Core Offial Website 
+# Nitro Brain Core Offcial Website 
