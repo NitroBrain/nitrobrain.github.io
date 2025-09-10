@@ -1,0 +1,405 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const fallbackRepos = [
+  { name: 'instant-color-palette-app', description: '🎨 Turn your surroundings into stunning color palettes - instantly, with your camera.', html_url: 'https://github.com/NitroBrain/instant-color-palette-app', private: false, archived: false },
+  { name: 'NitroShelf', description: '📖 NitroShelf: A lightweight desktop app to organize, browse, and read your PDF books.', html_url: 'https://github.com/NitroBrain/NitroShelf', private: false, archived: false },
+  { name: 'nitrobrain.github.io', description: 'Nitro Brain Core⚡', html_url: 'https://github.com/NitroBrain/nitrobrain.github.io', private: false, archived: false },
+  { name: 'nitrovim', description: '⚡@NitroVim — Just install. Start coding. Done.', html_url: 'https://github.com/NitroBrain/nitrovim', private: false, archived: false },
+  { name: '.github', description: 'No description', html_url: 'https://github.com/NitroBrain/.github', private: false, archived: false },
+  { name: 'uzcss', description: '🔥 Uzbek-to-CSS compiler.', html_url: 'https://github.com/NitroBrain/uzcss', private: false, archived: false },
+  { name: 'webbro-theme', description: 'Webbro Software Theme for VS Code⚡', html_url: 'https://github.com/NitroBrain/webbro-theme', private: false, archived: false },
+  { name: 'auraterm', description: '🎨 auraterm - Style terminal output with ease.', html_url: 'https://github.com/NitroBrain/auraterm', private: false, archived: false },
+  { name: 'wbtm', description: '📄 wbtm - WebBro Task Manager (CLI)', html_url: 'https://github.com/NitroBrain/wbtm', private: false, archived: false },
+  { name: 'brofs', description: '🤖 brofs - The Bro File System CLI', html_url: 'https://github.com/NitroBrain/brofs', private: false, archived: false },
+  { name: 'uzcss-syntax', description: '🔵 Visual Studio Code Extension for UzCSS', html_url: 'https://github.com/NitroBrain/uzcss-syntax', private: false, archived: false },
+  { name: 'brainfuck-interpreter', description: 'No description', html_url: 'https://github.com/NitroBrain/brainfuck-interpreter', private: false, archived: false },
+  { name: 'easy_speak', description: 'Effortless and powerful text-to-speech conversion for Python applications.', html_url: 'https://github.com/NitroBrain/easy_speak', private: false, archived: false },
+  { name: 'styled_print', description: 'A flexible terminal text styling utility for color, background, and custom formatting options.', html_url: 'https://github.com/NitroBrain/styled_print', private: false, archived: false },
+  { name: 'voice-js', description: 'Web Speech API', html_url: 'https://github.com/NitroBrain/voice-js', private: false, archived: false },
+  { name: 'pencil_art', description: 'This package converts image to sketch', html_url: 'https://github.com/NitroBrain/pencil_art', private: false, archived: false },
+  { name: 'simple-translate', description: 'Multi language translator Library for Python', html_url: 'https://github.com/NitroBrain/simple-translate', private: false, archived: false },
+  { name: 'gcd-calculator', description: 'Greatest Common Divisor Calculator', html_url: 'https://github.com/NitroBrain/gcd-calculator', private: false, archived: false },
+  { name: 'styled-console', description: 'A package to display styled messages in the console, enhancing logging aesthetics.', html_url: 'https://github.com/NitroBrain/styled-console', private: false, archived: false },
+  { name: 'kill-the-monsters-3d', description: 'Kill the monsters | 3D Video Game for PC', html_url: 'https://github.com/NitroBrain/kill-the-monsters-3d', private: false, archived: false }
+];
+
+let repos = [];
+try {
+  const res = await fetch('https://api.github.com/orgs/NitroBrain/repos?per_page=100&type=public&sort=updated', {
+    headers: {
+    },
+  });
+  if (!res.ok) {
+    console.error(`GitHub API error: ${res.status} ${res.statusText}`);
+    repos = fallbackRepos; 
+  } else {
+    const data = await res.json();
+    if (Array.isArray(data)) {
+      repos = data;
+    } else {
+      console.error('GitHub API did not return an array:', data);
+      repos = fallbackRepos;
+    }
+  }
+} catch (error) {
+  console.error('Failed to fetch GitHub repos:', error);
+  repos = fallbackRepos;
+}
+
+const blacklist = ['.github', 'infra', 'infrastructure', 'docs', 'website', 'nitrobrain.github.io'];
+if (repos.length > 0) {
+  repos = repos.filter(
+    (repo) =>
+      !repo.private &&
+      !repo.archived &&
+      !blacklist.includes(repo.name.toLowerCase()) &&
+      !repo.name.startsWith('.')
+  );
+}
+
+function getProjectEmoji(repo) {
+  const name = repo.name.toLowerCase();
+  const desc = (repo.description || '').toLowerCase();
+  if (name.includes('vim') || name.includes('editor')) return '📝';
+  if (name.includes('game') || name.includes('fun')) return '🎮';
+  if (name.includes('style') || name.includes('css')) return '🎨';
+  if (name.includes('console') || name.includes('logger')) return '🖥️';
+  if (name.includes('calc') || name.includes('math') || name.includes('gcd')) return '➗';
+  if (name.includes('voice') || name.includes('speech')) return '🎤';
+  if (name.includes('translate') || name.includes('lang')) return '🌐';
+  if (name.includes('infra') || name.includes('deploy')) return '🛠️';
+  if (name.includes('art') || name.includes('sketch')) return '✏️';
+  if (name.includes('python')) return '🐍';
+  if (name.includes('js') || name.includes('javascript')) return '📜';
+  if (name.includes('vscode') || name.includes('extension')) return '🧩';
+  if (desc.includes('utility') || desc.includes('tool')) return '🧰';
+  return '🌟';
+}
+---
+
+<Layout
+  title="NitroBrain - Where Smart Minds Move at Nitro Speed"
+  description="NitroBrain - Open-source initiative developing tools, libraries, games, and developer utilities. Building creative software solutions for developers worldwide."
+  keywords="open source, software development, tools, libraries, games, developer utilities, NitroBrain"
+>
+  <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-lg border-b-2 border-red-500">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
+      <a href="#" class="text-2xl sm:text-3xl font-extrabold text-red-500 uppercase tracking-wider hover:animate-glitch hover:shadow-[0_0_10px_rgba(252,72,80,1)] transition-all duration-300">
+        NitroBrain
+      </a>
+      <a href="https://github.com/NitroBrain" target="_blank" rel="noopener noreferrer" class="border-2 border-red-500 text-red-500 px-4 py-2 uppercase font-bold tracking-wide hover:bg-red-500 hover:text-white hover:shadow-[0_0_20px_rgba(252,72,80,1)] transition-all duration-300 flex items-center gap-2">
+        <span>GitHub</span>
+      </a>
+    </div>
+  </nav>
+
+  <section class="hero-bg min-h-screen flex flex-col justify-center items-start px-4 sm:px-6 lg:px-8 bg-[length:60px_60px] relative bg-white">
+    <div class="max-w-6xl mx-auto w-full animate-slide-up pt-24">
+      <h1 class="text-6xl sm:text-8xl lg:text-9xl font-extrabold text-gray-800 uppercase tracking-tight shadow-[4px_4px_0_rgba(252,72,80,1)] mb-0">
+        NitroBrain
+      </h1>
+      <h2 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-red-500 uppercase tracking-tight ml-4 sm:ml-8 mb-8">
+        Core
+      </h2>
+      <p class="text-lg sm:text-xl text-gray-600 max-w-xl mb-6 font-mono">
+        Open-source initiative developing tools, libraries, games, and developer utilities.
+        Building a strong ecosystem of creative software solutions.
+      </p>
+      <p class="text-xl sm:text-2xl text-red-500 font-bold uppercase tracking-wide border-l-4 border-red-500 pl-4 mt-12 font-mono">
+        "We don't just code for work. We code for soul."
+      </p>
+    </div>
+    <a href="#featured" class="absolute bottom-8 right-8 w-12 h-12 sm:w-14 sm:h-14 border-2 border-red-500 bg-transparent flex items-center justify-center rounded-full text-red-500 hover:bg-red-500 hover:text-white hover:scale-110 transition-all duration-300 animate-neon-pulse">
+      <span class="text-xl font-black">↓</span>
+    </a>
+  </section>
+
+  <section id="featured" class="py-24 px-4 sm:px-6 lg:px-8 bg-gray-50">
+    <div class="max-w-7xl mx-auto">
+      <h2 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-gray-800 uppercase tracking-tight relative mb-16">
+        Featured Projects
+        <span class="absolute bottom-[-10px] left-0 w-24 h-1 bg-red-500"></span>
+      </h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {repos.length === 0 ? (
+          <p class="text-gray-600 text-center col-span-full font-mono">Unable to fetch projects from GitHub. Check out our featured projects below!</p>
+        ) : (
+          repos.map((repo) => (
+            <div class="bg-white/95 backdrop-blur-sm border-2 border-gray-200 p-6 hover:border-red-500 hover:-translate-y-1 hover:shadow-[0_10px_30px_rgba(252,72,80,0.3)] transition-all duration-300 flex flex-col justify-between relative group">
+              <div class="absolute top-0 left-0 right-0 h-1 bg-red-500 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></div>
+              <div>
+                <h3 class="text-xl font-bold text-gray-800 uppercase tracking-wide mb-4">{repo.name}</h3>
+                <p class="text-gray-600 font-mono mb-6">{repo.description || 'No description'}</p>
+              </div>
+              <a href={repo.html_url} target="_blank" rel="noopener noreferrer" class="border-2 border-red-500 text-red-500 px-4 py-2 uppercase font-bold tracking-wide hover:bg-red-500 hover:text-white transition-all duration-300 flex items-center gap-2 relative overflow-hidden group/link">
+                <span class="absolute top-0 left-[-100%] w-full h-full bg-red-500 transition-all duration-300 group-hover/link:left-0 z-[-1]"></span>
+                <span>{getProjectEmoji(repo)} View Project</span>
+                <span class="font-mono font-bold">&gt;&gt;</span>
+              </a>
+            </div>
+          ))
+        )}
+      </div>
+    </div>
+  </section>
+
+  <section class="py-24 px-4 sm:px-6 lg:px-8 bg-white border-t-2 border-b-2 border-red-500">
+    <div class="max-w-7xl mx-auto">
+      <h2 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-gray-800 uppercase tracking-tight relative mb-16">
+        Developer Utilities
+        <span class="absolute bottom-[-10px] left-0 w-24 h-1 bg-red-500"></span>
+      </h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div class="bg-white/95 backdrop-blur-sm border-2 border-gray-200 p-6 hover:border-red-500 hover:-translate-y-1 hover:shadow-[0_10px_30px_rgba(252,72,80,0.3)] transition-all duration-300 flex flex-col justify-between relative group">
+          <div class="absolute top-0 left-0 right-0 h-1 bg-red-500 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></div>
+          <div>
+            <h3 class="text-xl font-bold text-gray-800 uppercase tracking-wide mb-4">styled_print</h3>
+            <p class="text-gray-600 font-mono mb-6">Terminal text styling for Python</p>
+          </div>
+          <a href="https://github.com/webbro-software/styled_print" target="_blank" rel="noopener noreferrer" class="border-2 border-red-500 text-red-500 px-4 py-2 uppercase font-bold tracking-wide hover:bg-red-500 hover:text-white transition-all duration-300 flex items-center gap-2 relative overflow-hidden group/link">
+            <span class="absolute top-0 left-[-100%] w-full h-full bg-red-500 transition-all duration-300 group-hover/link:left-0 z-[-1]"></span>
+            <span>View on GitHub</span>
+            <span class="font-mono font-bold">&gt;&gt;</span>
+          </a>
+        </div>
+        <div class="bg-white/95 backdrop-blur-sm border-2 border-gray-200 p-6 hover:border-red-500 hover:-translate-y-1 hover:shadow-[0_10px_30px_rgba(252,72,80,0.3)] transition-all duration-300 flex flex-col justify-between relative group">
+          <div class="absolute top-0 left-0 right-0 h-1 bg-red-500 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></div>
+          <div>
+            <h3 class="text-xl font-bold text-gray-800 uppercase tracking-wide mb-4">styled-console</h3>
+            <p class="text-gray-600 font-mono mb-6">Styled console logger for JavaScript</p>
+          </div>
+          <a href="https://github.com/webbro-software/styled-console" target="_blank" rel="noopener noreferrer" class="border-2 border-red-500 text-red-500 px-4 py-2 uppercase font-bold tracking-wide hover:bg-red-500 hover:text-white transition-all duration-300 flex items-center gap-2 relative overflow-hidden group/link">
+            <span class="absolute top-0 left-[-100%] w-full h-full bg-red-500 transition-all duration-300 group-hover/link:left-0 z-[-1]"></span>
+            <span>View on GitHub</span>
+            <span class="font-mono font-bold">&gt;&gt;</span>
+          </a>
+        </div>
+        <div class="bg-white/95 backdrop-blur-sm border-2 border-gray-200 p-6 hover:border-red-500 hover:-translate-y-1 hover:shadow-[0_10px_30px_rgba(252,72,80,0.3)] transition-all duration-300 flex flex-col justify-between relative group">
+          <div class="absolute top-0 left-0 right-0 h-1 bg-red-500 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></div>
+          <div>
+            <h3 class="text-xl font-bold text-gray-800 uppercase tracking-wide mb-4">gcd-calculator</h3>
+            <p class="text-gray-600 font-mono mb-6">Simple GCD calculator in Python</p>
+          </div>
+          <a href="https://github.com/webbro-software/gcd-calculator" target="_blank" rel="noopener noreferrer" class="border-2 border-red-500 text-red-500 px-4 py-2 uppercase font-bold tracking-wide hover:bg-red-500 hover:text-white transition-all duration-300 flex items-center gap-2 relative overflow-hidden group/link">
+            <span class="absolute top-0 left-[-100%] w-full h-full bg-red-500 transition-all duration-300 group-hover/link:left-0 z-[-1]"></span>
+            <span>View on GitHub</span>
+            <span class="font-mono font-bold">&gt;&gt;</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-24 px-4 sm:px-6 lg:px-8 bg-gray-50">
+    <div class="max-w-7xl mx-auto">
+      <h2 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-gray-800 uppercase tracking-tight relative mb-16">
+        Experiments & Research
+        <span class="absolute bottom-[-10px] left-0 w-24 h-1 bg-red-500"></span>
+      </h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div class="bg-white/95 backdrop-blur-sm border-2 border-gray-200 p-6 hover:border-red-500 hover:-translate-y-1 hover:shadow-[0_10px_30px_rgba(252,72,80,0.3)] transition-all duration-300 flex flex-col justify-between relative group">
+          <div class="absolute top-0 left-0 right-0 h-1 bg-red-500 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></div>
+          <div>
+            <h3 class="text-xl font-bold text-gray-800 uppercase tracking-wide mb-4">nitrovim</h3>
+            <p class="text-gray-600 font-mono mb-6">VIM setup in Lua for fast dev</p>
+          </div>
+          <a href="https://github.com/webbro-software/nitrovim" target="_blank" rel="noopener noreferrer" class="border-2 border-red-500 text-red-500 px-4 py-2 uppercase font-bold tracking-wide hover:bg-red-500 hover:text-white transition-all duration-300 flex items-center gap-2 relative overflow-hidden group/link">
+            <span class="absolute top-0 left-[-100%] w-full h-full bg-red-500 transition-all duration-300 group-hover/link:left-0 z-[-1]"></span>
+            <span>Explore</span>
+            <span class="font-mono font-bold">&gt;&gt;</span>
+          </a>
+        </div>
+        <div class="bg-white/95 backdrop-blur-sm border-2 border-gray-200 p-6 hover:border-red-500 hover:-translate-y-1 hover:shadow-[0_10px_30px_rgba(252,72,80,0.3)] transition-all duration-300 flex flex-col justify-between relative group">
+          <div class="absolute top-0 left-0 right-0 h-1 bg-red-500 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></div>
+          <div>
+            <h3 class="text-xl font-bold text-gray-800 uppercase tracking-wide mb-4">simple-translate</h3>
+            <p class="text-gray-600 font-mono mb-6">Multilingual translator for Python</p>
+          </div>
+          <a href="https://github.com/webbro-software/simple-translate" target="_blank" rel="noopener noreferrer" class="border-2 border-red-500 text-red-500 px-4 py-2 uppercase font-bold tracking-wide hover:bg-red-500 hover:text-white transition-all duration-300 flex items-center gap-2 relative overflow-hidden group/link">
+            <span class="absolute top-0 left-[-100%] w-full h-full bg-red-500 transition-all duration-300 group-hover/link:left-0 z-[-1]"></span>
+            <span>Explore</span>
+            <span class="font-mono font-bold">&gt;&gt;</span>
+          </a>
+        </div>
+        <div class="bg-white/95 backdrop-blur-sm border-2 border-gray-200 p-6 hover:border-red-500 hover:-translate-y-1 hover:shadow-[0_10px_30px_rgba(252,72,80,0.3)] transition-all duration-300 flex flex-col justify-between relative group">
+          <div class="absolute top-0 left-0 right-0 h-1 bg-red-500 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></div>
+          <div>
+            <h3 class="text-xl font-bold text-gray-800 uppercase tracking-wide mb-4">voice-js</h3>
+            <p class="text-gray-600 font-mono mb-6">Web Speech API abstraction</p>
+          </div>
+          <a href="https://github.com/webbro-software/voice-js" target="_blank" rel="noopener noreferrer" class="border-2 border-red-500 text-red-500 px-4 py-2 uppercase font-bold tracking-wide hover:bg-red-500 hover:text-white transition-all duration-300 flex items-center gap-2 relative overflow-hidden group/link">
+            <span class="absolute top-0 left-[-100%] w-full h full bg-red-500 transition-all duration-300 group-hover/link:left-0 z-[-1]"></span>
+            <span>Explore</span>
+            <span class="font-mono font-bold">&gt;&gt;</span>
+          </a>
+        </div>
+        <div class="bg-white/95 backdrop-blur-sm border-2 border-gray-200 p-6 hover:border-red-500 hover:-translate-y-1 hover:shadow-[0_10px_30px_rgba(252,72,80,0.3)] transition-all duration-300 flex flex-col justify-between relative group">
+          <div class="absolute top-0 left-0 right-0 h-1 bg-red-500 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></div>
+          <div>
+            <h3 class="text-xl font-bold text-gray-800 uppercase tracking-wide mb-4">pencil_art</h3>
+            <p class="text-gray-600 font-mono mb-6">Convert images to sketch</p>
+          </div>
+          <a href="https://github.com/webbro-software/pencil_art" target="_blank" rel="noopener noreferrer" class="border-2 border-red-500 text-red-500 px-4 py-2 uppercase font-bold tracking-wide hover:bg-red-500 hover:text-white transition-all duration-300 flex items-center gap-2 relative overflow-hidden group/link">
+            <span class="absolute top-0 left-[-100%] w-full h-full bg-red-500 transition-all duration-300 group-hover/link:left-0 z-[-1]"></span>
+            <span>Explore</span>
+            <span class="font-mono font-bold">&gt;&gt;</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-24 px-4 sm:px-6 lg:px-8 bg-white border-t-4 border-red-500">
+    <div class="max-w-7xl mx-auto">
+      <h2 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-gray-800 uppercase tracking-tight relative mb-16 text-center">
+        VS Code Extensions
+        <span class="absolute bottom-[-10px] left-0 w-24 h-1 bg-red-500"></span>
+      </h2>
+      <div class="max-w-2xl mx-auto bg-white/95 backdrop-blur-sm border-2 border-red-500 p-6 animate-neon-pulse text-center">
+        <h3 class="text-xl font-bold text-gray-800 uppercase tracking-wide mb-4">uzcss-syntax</h3>
+        <p class="text-gray-600 font-mono mb-6">Syntax highlighting for uzcss - bringing Uzbek CSS to VS Code</p>
+        <a href="https://github.com/webbro-software/uzcss-syntax" target="_blank" rel="noopener noreferrer" class="border-2 border-red-500 text-red-500 px-4 py-2 uppercase font-bold tracking-wide hover:bg-red-500 hover:text-white transition-all duration-300 flex items-center gap-2 relative overflow-hidden group/link mx-auto w-fit">
+          <span class="absolute top-0 left-[-100%] w-full h-full bg-red-500 transition-all duration-300 group-hover/link:left-0 z-[-1]"></span>
+          <span>View Extension</span>
+          <span class="font-mono font-bold">&gt;&gt;</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-24 px-4 sm:px-6 lg:px-8 bg-[radial-gradient(circle_at_25%_25%,_#FC4850_0%,_transparent_50%),_radial-gradient(circle_at_75%_75%,_#FC4850_0%,_transparent_50%),_#FFF]">
+    <div class="max-w-7xl mx-auto">
+      <h2 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-gray-800 uppercase tracking-tight relative mb-16">
+        Our Philosophy
+        <span class="absolute bottom-[-10px] left-0 w-24 h-1 bg-red-500"></span>
+      </h2>
+      <p class="text-xl sm:text-2xl text-gray-600 max-w-xl mx-auto mb-12 text-center font-mono">
+        We build for the soul of development
+      </p>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
+        <div class="bg-white/95 backdrop-blur-sm border-2 border-gray-200 p-6 text-center hover:border-red-500 hover:scale-105 hover:shadow-[0_0_30px_rgba(252,72,80,0.5)] transition-all duration-300">
+          <span class="text-5xl mb-4 block filter grayscale group-hover:filter-none transition-all duration-300">📚</span>
+          <p class="text-lg font-bold text-gray-800 uppercase tracking-wide">Learning</p>
+        </div>
+        <div class="bg-white/95 backdrop-blur-sm border-2 border-gray-200 p-6 text-center hover:border-red-500 hover:scale-105 hover:shadow-[0_0_30px_rgba(252,72,80,0.5)] transition-all duration-300">
+          <span class="text-5xl mb-4 block filter grayscale group-hover:filter-none transition-all duration-300">💡</span>
+          <p class="text-lg font-bold text-gray-800 uppercase tracking-wide">Innovation</p>
+        </div>
+        <div class="bg-white/95 backdrop-blur-sm border-2 border-gray-200 p-6 text-center hover:border-red-500 hover:scale-105 hover:shadow-[0_0_30px_rgba(252,72,80,0.5)] transition-all duration-300">
+          <span class="text-5xl mb-4 block filter grayscale group-hover:filter-none transition-all duration-300">💻</span>
+          <p class="text-lg font-bold text-gray-800 uppercase tracking-wide">Developers</p>
+        </div>
+        <div class="bg-white/95 backdrop-blur-sm border-2 border-gray-200 p-6 text-center hover:border-red-500 hover:scale-105 hover:shadow-[0_0_30px_rgba(252,72,80,0.5)] transition-all duration-300">
+          <span class="text-5xl mb-4 block filter grayscale group-hover:filter-none transition-all duration-300">🎮</span>
+          <p class="text-lg font-bold text-gray-800 uppercase tracking-wide">Fun</p>
+        </div>
+      </div>
+      <blockquote class="text-2xl sm:text-3xl font-extrabold text-red-500 uppercase tracking-wide text-center max-w-2xl mx-auto shadow-[2px_2px_0_rgba(0,0,0,1)]">
+        "We don't just code for work. We code for soul."
+      </blockquote>
+    </div>
+  </section>
+
+  <footer class="bg-white border-t-4 border-red-500 py-16 px-4 sm:px-6 lg:px-8 text-center">
+    <h3 class="text-2xl sm:text-3xl font-extrabold text-red-500 uppercase tracking-wider mb-8">Connect with NitroBrain</h3>
+    <a href="https://github.com/NitroBrain" target="_blank" rel="noopener noreferrer" class="border-2 border-red-500 text-red-500 px-6 py-3 uppercase font-bold tracking-wide hover:bg-red-500 hover:text-white hover:shadow-[0_0_30px_rgba(252,72,80,1)] transition-all duration-300 inline-flex items-center gap-4 relative overflow-hidden group">
+      <span class="absolute top-0 left-[-100%] w-full h-full bg-red-500 transition-all duration-300 group-hover:left-0 z-[-1]"></span>
+      <span>github.com/NitroBrain</span>
+    </a>
+    <hr class="border-none h-0.5 bg-red-500 my-12 max-w-xs mx-auto" />
+    <div class="text-gray-600 uppercase tracking-wide font-mono">
+      <span>© 2025 Nitro Brain | Built with</span>
+      <span class="text-red-500 text-lg mx-1">♥</span>
+      <span>by developers for developers</span>
+    </div>
+  </footer>
+
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+    body {
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      @apply bg-white text-gray-800 overflow-x-hidden;
+      scroll-behavior: smooth;
+    }
+
+    @keyframes slide-up {
+      from { transform: translateY(100px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+
+    @keyframes glitch {
+      0% { transform: translate(0); }
+      20% { transform: translate(-2px, 2px); }
+      40% { transform: translate(-2px, -2px); }
+      60% { transform: translate(2px, 2px); }
+      80% { transform: translate(2px, -2px); }
+      100% { transform: translate(0); }
+    }
+
+    @keyframes neon-pulse {
+      0%, 100% { box-shadow: 0 0 20px #FC4850, 0 0 40px #FC4850, 0 0 60px #FC4850; }
+      50% { box-shadow: 0 0 10px #FC4850, 0 0 20px #FC4850, 0 0 30px #FC4850; }
+    }
+
+    .animate-slide-up {
+      animation: slide-up 1s ease-out;
+    }
+
+    .animate-glitch {
+      animation: glitch 0.3s ease-in-out;
+    }
+
+    .animate-neon-pulse {
+      animation: neon-pulse 2s infinite;
+    }
+
+    .animate-fade-in-up {
+      animation: fadeInUp 0.6s ease-out forwards;
+    }
+
+    .hero-bg {
+      background:
+        linear-gradient(45deg, #FFF 25%, transparent 25%),
+        linear-gradient(-45deg, #FFF 25%, transparent 25%),
+        linear-gradient(45deg, transparent 75%, #FFF 75%),
+        linear-gradient(-45deg, transparent 75%, #FFF 75%);
+      background-size: 60px 60px;
+      background-position: 0 0, 0 30px, 30px -30px, -30px 0px;
+    }
+  </style>
+
+  <script>
+    window.addEventListener('scroll', () => {
+      const navbar = document.getElementById('navbar');
+      if (window.scrollY > 50) {
+        navbar?.classList.add('scrolled', 'shadow-[0_4px_12px_rgba(0,0,0,0.1)]');
+      } else {
+        navbar?.classList.remove('scrolled', 'shadow-[0_4px_12px_rgba(0,0,0,0.1)]');
+      }
+    });
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', (e) => {
+        e.preventDefault();
+        const target = document.querySelector(anchor.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    });
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('animate-fade-in-up');
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+    document.querySelectorAll('.bg-white\\/95').forEach(card => {
+      observer.observe(card);
+    });
+  </script>
+</Layout>
